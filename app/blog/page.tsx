@@ -14,17 +14,14 @@ interface PageProps {
 
 const ARTICLES_PER_PAGE = 30;
 
-// Helper function to get value from potentially object or string field
 const getFieldValue = (field: any): string => {
   if (!field) return '';
 
-  // If it's a simple string
   if (typeof field === 'string') return field;
 
   // If it's an object with Default property
   if (field.Default) return field.Default;
 
-  // If it's an object with another structure
   return (Object.values(field)[0] as string) || '';
 };
 
@@ -45,6 +42,7 @@ export default async function Blog(props: PageProps) {
 
   return (
     <div>
+      <h2 className="text-4xl font-bold mb-8">Blog</h2>
       <div
         style={{
           display: 'grid',
