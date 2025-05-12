@@ -61,6 +61,9 @@ export function Header({ headerContent }: any) {
               </NavigationMenuList>
             </NavigationMenu>
             <div className="flex items-center gap-3">
+              <Link href="/blog" className="text-md font-bold mr-8">
+                Blog
+              </Link>
               <LocalePicker
                 availableLocales={[
                   { code: 'en-US', label: '🇺🇸 English' },
