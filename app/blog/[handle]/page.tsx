@@ -22,7 +22,6 @@ interface PageProps {
 }
 
 export default async function BlogArticle(props: PageProps) {
-  console.log('Blog article params:', props.params);
   const cookieStore = cookies();
   const locale = cookieStore.get('NEXT_LOCALE')?.value || 'en-US';
 
@@ -33,13 +32,8 @@ export default async function BlogArticle(props: PageProps) {
         options: {
           includeRefs: true,
         },
-        // userAttributes: {
-        //   urlPath: '/blog/' + props.params.handle,
-        // },
       })
       .toPromise();
-
-    console.log('Builder content for blog article:', content);
 
     const articleData = content?.data;
     const publishDate = articleData?.date

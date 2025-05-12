@@ -43,8 +43,6 @@ export default async function Blog(props: PageProps) {
     offset: (pageNumber - 1) * ARTICLES_PER_PAGE,
   });
 
-  console.log(articles);
-
   return (
     <div>
       <div
