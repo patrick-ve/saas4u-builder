@@ -51,7 +51,6 @@ export default function LocalePicker({
       ? availableLocales
       : [
           { code: 'en-US', label: '🇺🇸 English' },
-          { code: 'de-DE', label: '🇩🇪 Deutsch' },
           { code: 'nl-NL', label: '🇳🇱 Nederlands' },
         ];
 
