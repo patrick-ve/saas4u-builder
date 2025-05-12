@@ -1,6 +1,7 @@
 import React from 'react';
 import { builder } from '@builder.io/sdk';
-import Link from 'next/link'; // Use Next.js Link for navigation
+import Link from 'next/link';
+import { cookies } from 'next/headers';
 
 // Replace with your Public API Key
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
@@ -13,17 +14,30 @@ interface PageProps {
 
 const ARTICLES_PER_PAGE = 30;
 
-// Helper function to get value from potentially object or string field
-const getFieldValue = (field: any): string => {
+// Helper function to get localized value from field
+const getLocalizedValue = (field: any, locale: string): string => {
   if (!field) return '';
+
+  // If it's a simple string
   if (typeof field === 'string') return field;
-  // If it's an object with Default property
-  if (field.Default) return field.Default;
-  // If it's an object with another structure
+
+  // If it's a localized object
+  if (field['@type'] === '@builder.io/core:LocalizedValue') {
+    // Try to get value for current locale
+    if (field[locale]) return field[locale];
+    // Fall back to Default
+    if (field.Default) return field.Default;
+  }
+
+  // For other object structures
   return (Object.values(field)[0] as string) || '';
 };
 
 export default async function Blog(props: PageProps) {
+  // Get the current locale from cookies
+  const cookieStore = cookies();
+  const locale = cookieStore.get('NEXT_LOCALE')?.value || 'en-US';
+
   // Get the page number from the path or query parameter
   // In this example we are hardcoding it as 1
   const pageNumber = 1;
@@ -42,10 +56,13 @@ export default async function Blog(props: PageProps) {
   return (
     <div>
       {articles.map((item) => {
-        const handle = getFieldValue(item?.data?.handle);
-        const title = getFieldValue(item?.data?.title);
-        const image = getFieldValue(item?.data?.image);
-        const description = getFieldValue(item?.data?.description);
+        const handle = getLocalizedValue(item?.data?.handle, locale);
+        const title = getLocalizedValue(item?.data?.title, locale);
+        const image = getLocalizedValue(item?.data?.image, locale);
+        const description = getLocalizedValue(
+          item?.data?.description,
+          locale
+        );
 
         return (
           <Link
