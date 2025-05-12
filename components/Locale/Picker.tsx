@@ -37,7 +37,6 @@ export default function LocalePicker({
         : 'en-US';
     const localeToUse = currentLocale || defaultLocale;
 
-    console.log('Setting locale to:', localeToUse);
     setLoc(localeToUse);
 
     // Set cookie if it doesn't exist
