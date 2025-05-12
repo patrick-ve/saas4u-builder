@@ -10,7 +10,7 @@ import IconCard from './components/Card/IconCard';
 import ImageHero from './components/Hero/ImageHero';
 import SplitHero from './components/Hero/SplitHero';
 import TextHero from './components/Hero/TextHero';
-import { LocalePicker } from './components/Locale/Picker';
+import LocalePicker from './components/Locale/Picker';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -398,4 +398,19 @@ Builder.registerComponent(Header, {
 
 Builder.registerComponent(LocalePicker, {
   name: 'LocalePicker',
+  inputs: [
+    {
+      name: 'availableLocales',
+      type: 'list',
+      subFields: [
+        { name: 'code', type: 'text' },
+        { name: 'label', type: 'text' },
+      ],
+      defaultValue: [
+        { code: 'en-US', label: '🇺🇸 English' },
+        { code: 'de-DE', label: '🇩🇪 Deutsch' },
+        { code: 'fr-FR', label: '🇫🇷 Français' },
+      ],
+    },
+  ],
 });
