@@ -26,9 +26,9 @@ export function Header({ headerContent }: any) {
             <Button variant="link" asChild>
               <Link href="/" passHref>
                 <img
-                  className="h-6"
-                  src="https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F692369ff646645349e68a86b43fc7a38"
-                  alt="Builder.io Logo"
+                  className="h-10"
+                  src="/assets/Logo.png"
+                  alt="SaaS4U Logo"
                   loading="lazy"
                 />
               </Link>
