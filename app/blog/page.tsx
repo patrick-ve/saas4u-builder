@@ -47,35 +47,52 @@ export default async function Blog(props: PageProps) {
 
   return (
     <div>
-      {articles.map((item) => {
-        const handle = getFieldValue(item?.data?.handle);
-        const title = getFieldValue(item?.data?.title);
-        const image = getFieldValue(item?.data?.image);
-        const description = getFieldValue(item?.data?.description);
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '20px',
+          margin: '0 auto',
+        }}
+      >
+        {articles.map((item) => {
+          const handle = getFieldValue(item?.data?.handle);
+          const title = getFieldValue(item?.data?.title);
+          const image = getFieldValue(item?.data?.image);
+          const description = getFieldValue(item?.data?.description);
 
-        return (
-          <Link
-            href={`/blog/${handle || '#'}`}
-            key={handle || item.id}
-          >
-            <div style={{ overflow: 'hidden', width: 300 }}>
-              <div
-                style={{ width: 300, height: 200, display: 'block' }}
-              >
-                <img src={image || ''} alt={title || ''} />
+          return (
+            <Link
+              href={`/blog/${handle || '#'}`}
+              key={handle || item.id}
+            >
+              <div style={{ overflow: 'hidden' }}>
+                <div style={{ height: 200, display: 'block' }}>
+                  <img
+                    src={image || ''}
+                    alt={title || ''}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                </div>
+                <h3 className="text-lg font-bold mt-2">{title}</h3>
+                <p>{description}</p>
               </div>
-              {title}
-              {description}
-            </div>
-          </Link>
-        );
-      })}
+            </Link>
+          );
+        })}
+      </div>
       <div
         style={{
           padding: 20,
-          width: 300,
+          width: '100%',
+          maxWidth: '1200px',
           margin: 'auto',
           display: 'flex',
+          justifyContent: 'center',
         }}
       >
         {pageNumber > 1 && (
