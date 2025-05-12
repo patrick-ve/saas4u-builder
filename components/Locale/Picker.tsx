@@ -53,7 +53,7 @@ export default function LocalePicker({
       : [
           { code: 'en-US', label: '🇺🇸 English' },
           { code: 'de-DE', label: '🇩🇪 Deutsch' },
-          { code: 'fr-FR', label: '🇫🇷 Français' },
+          { code: 'nl-NL', label: '🇳🇱 Nederlands' },
         ];
 
   return (

@@ -409,7 +409,7 @@ Builder.registerComponent(LocalePicker, {
       defaultValue: [
         { code: 'en-US', label: '🇺🇸 English' },
         { code: 'de-DE', label: '🇩🇪 Deutsch' },
-        { code: 'fr-FR', label: '🇫🇷 Français' },
+        { code: 'nl-NL', label: '🇳🇱 Nederlands' },
       ],
     },
   ],
