@@ -1,5 +1,6 @@
 import { builder } from '@builder.io/sdk';
 import { RenderBuilderContent } from '../../components/builder';
+import { cookies } from 'next/headers';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -13,15 +14,19 @@ interface PageProps {
 
 export default async function Page(props: PageProps) {
   const builderModelName = 'page';
+  const cookieStore = cookies();
+  const locale = cookieStore.get('NEXT_LOCALE')?.value || 'en-US';
 
   const content = await builder
-    // Get the page content from Builder with the specified options
     .get(builderModelName, {
       userAttributes: {
-        // Use the page path specified in the URL to fetch the content
+        locale,
         urlPath: '/' + (props?.params?.page?.join('/') || ''),
       },
-    });
+    })
+    .toPromise();
+
+  console.log(content);
 
   return (
     <>
